@@ -1,0 +1,10 @@
+Field Simulation protocol :
+
+    FS - Field Simulation pointer
+
+        NE - Notify Event
+        NEOF - Notify Event Over File
+        REL - Request Entity Listener
+        GES - Get Entity State
+        GFE - Get Field Entities
+

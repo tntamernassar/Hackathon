@@ -1,0 +1,7 @@
+http : npm install http-server -g
+_______________________________________________________________
+websocket : npm install websocket
+_______________________________________________________________
+Runner : node impl/PassiveObjects/RCLServerRunner.js
+_______________________________________________________________
+

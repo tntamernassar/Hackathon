@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>
+Simulation commands :
+</h1>
+
+<h3>1) send SubBETncClean3PM checklist event</h3>
+<h3>2) send none effective event</h3>
+<h3>3) send EqpBeginPM event</h3>
+<h3>4) send Automon event</h3>
+
+<script>
+
+    const ws = new WebSocket('ws://10.114.136.5:8080/');
+
+
+
+    function initConnection() {
+        ws.onopen = function() {
+            console.log('WebSocket Client Connected');
+            // ws.send('FS NE BET102_PM2[|~|]Date[|~|]Down[|~|]SchedQual[|~|]ETU and some bullshit[|~|]3[|~|] [|~|]SubBETncClean3PM');
+            // ws.send('FS GFE');
+            // ws.send('FS REL ALL');
+        };
+
+        ws.onmessage = function(e) {
+           console.log(e.data.toString());
+        };
+
+    }
+
+
+
+    function send(msg) {
+        ws.send(msg);
+    }
+
+
+    initConnection();
+
+</script>
+
+</body>
+</html>

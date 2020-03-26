@@ -1,0 +1,72 @@
+{
+
+  "RCL": [
+    "RCL101",
+    "RCL102",
+    "RCL103",
+    "RCL104",
+    "RCL105",
+    "RCL106",
+    "RCL107",
+    "RCL108",
+    "RCL110",
+    "RCL116",
+    "RCL117",
+    "RCL119",
+    "RCL120",
+    "RCL121",
+    "RCL122",
+    "RCL123",
+    "RCL124",
+    "RCL125",
+    "RCL130",
+    "RCL201",
+    "RCL202",
+    "RCL203",
+    "RCL903",
+    "RCL922",
+    "RCL923"
+  ],
+
+
+  "BET": [
+    "BET101_PM1",
+    "BET101_PM2",
+    "BET101_PM3",
+    "BET101_PM4",
+
+    "BET102_PM1",
+    "BET102_PM2",
+    "BET102_PM3",
+    "BET102_PM4",
+
+    "BET201_PM1",
+    "BET201_PM2",
+    "BET201_PM3",
+    "BET201_PM4",
+
+    "BET202_PM1",
+    "BET202_PM2",
+    "BET202_PM3",
+    "BET202_PM4"
+  ],
+
+
+  "BCL": [
+    "BCL104_PM1",
+    "BCL104_PM2",
+    "BCL104_PM3",
+
+    "BCL208_PM1",
+    "BCL208_PM2",
+    "BCL208_PM3",
+
+    "BCL211_PM1",
+    "BCL211_PM2",
+    "BCL211_PM3",
+
+    "BCL213_PM1",
+    "BCL213_PM2",
+    "BCL213_PM3"
+  ]
+}

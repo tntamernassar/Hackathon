@@ -1,0 +1,21 @@
+{
+  "name": "rclserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "/Impl/BusinessLogicLayer/Runners/RCLServerRunner.js",
+  "scripts": {
+    "start": "node Impl/BusinessLogicLayer/Runners/RCLServerRunner.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dns": "^0.2.2",
+    "httpntlm": "^1.7.6",
+    "net": "^1.0.2",
+    "nodemailer": "^6.4.3",
+    "request": "^2.88.2",
+    "sqlite3": "^4.1.1",
+    "websocket": "^1.0.31"
+  }
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+<body>
+http://irshweb.intel.com/IrAnalysis$/1270_MAODATA/
+
+
+<script>
+
+    function postData(input) {
+        $.ajax({
+            type: "POST",
+            url: "https://irshweb.intel.com/IrAnalysis$/1270_MAODATA/myPyton.py",
+            data: { param: input },
+            success: callbackFunc
+        });
+    }
+
+    function callbackFunc(response) {
+        // do something with the response
+        console.log(response);
+    }
+
+    postData('data to process');
+
+
+</script>
+</body>
+</html>
