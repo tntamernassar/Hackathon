@@ -25,9 +25,10 @@ class Profile:
     def set_mode(self, mode):
         self.mode = mode
 
-    def connect_to_game(self, port):
+    def connect_to_game(self, port, addr):
         try:
-            self.network_adapter.make_tcp_connection(port)
+            self.network_adapter.make_tcp_connection(addr, port)
             return True
-        except:
+        except Exception as e:
+            print(e)
             return False

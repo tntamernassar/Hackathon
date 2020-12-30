@@ -9,13 +9,12 @@ def get_ip(interface=Scapy.conf.iface):
 
 
 class NetworkAdapter:
-    def __init__(self, udp_listening_port, server_ip):
+    def __init__(self, udp_listening_port):
         self.udp_listening_port = udp_listening_port
-        self.server_ip = server_ip
         # Setting up UDP socket
         self.udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         self.udp_socket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-        self.udp_socket.bind((server_ip, udp_listening_port))
+        self.udp_socket.bind(("", udp_listening_port))
         # Setting up TCP socket
         self.tcp_socket = None
 
@@ -39,9 +38,10 @@ class NetworkAdapter:
         clear_thread = threading.Thread(target=_clear)
         clear_thread.start()
 
-    def make_tcp_connection(self, port):
+    def make_tcp_connection(self, server_ip, port):
+        print(server_ip, port, " <<")
         self.tcp_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.tcp_socket.connect((self.server_ip, port))
+        self.tcp_socket.connect((server_ip, port))
 
     def send_tcp_message(self, message):
         self.tcp_socket.send(message.encode())
@@ -49,12 +49,16 @@ class NetworkAdapter:
     def tcp_recover(self):
         try:
             return self.tcp_socket.recv(BUFFER_SIZE)
-        except:
+        except Exception as e:
             return None
 
-    def tcp_connected(self):
+    def tcp_connected(self, msg):
         try:
-            self.tcp_socket.recv(1)
+            d = self.send_tcp_message(msg)
             return True
-        except:
+        except BlockingIOError:
+            return True  
+        except ConnectionResetError as e:
+            return False
+        except Exception as e:
             return False

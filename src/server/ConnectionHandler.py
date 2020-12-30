@@ -34,6 +34,7 @@ class ConnectionHandler:
     def kill(self):
         try:
             self.tcp_socket.close()
-        except:
+        except Exception as e:
+            print(e)
             pass
 

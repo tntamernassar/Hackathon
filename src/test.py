@@ -1,1 +1,6 @@
-print (1)
+import getch, time
+
+
+print(getch)
+
+char = getch.getch() 

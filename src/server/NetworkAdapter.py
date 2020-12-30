@@ -9,13 +9,12 @@ def get_ip(interface):
 
 
 class NetworkAdapter:
-    def __init__(self, udp_dest_port, interface=Scapy.conf.iface, timeout=0.2):
+    def __init__(self, udp_dest_port, interface=Scapy.conf.iface):
         self.ip = get_ip(interface)
         # Setting up UDP socket
         self.udp_dest_port = udp_dest_port
         self.udp_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
         self.udp_socket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-        self.udp_socket.settimeout(timeout)
         # setting up TCP socket
         self.tcp_connections = []
         self.tcp_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
