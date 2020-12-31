@@ -18,8 +18,8 @@ def game_mode(network_adapter):
         network_adapter.send_to_connections(Utils.make_welcome_message())
         time.sleep(10)
         Game.Game.get_instance().set_mode(Game.RESTARTING)
+        network_adapter.send_to_connections(Utils.game_over())
         network_adapter.kill_all_connections()
-        Utils.game_over()
 
 
 def run(udp_dest_port):
@@ -36,4 +36,4 @@ def run(udp_dest_port):
         # restart game instance
         Game.Game.get_instance().restart()
 
-run(2020)
+run(13117)

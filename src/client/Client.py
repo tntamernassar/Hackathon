@@ -24,16 +24,12 @@ def game_mode(network_adapter):
     with Listener() as keyboard_listener:
         keyboard_listener.on_press = on_press(keyboard_listener)
 
-        def socket_close_listener():
-            while True:
-                if not network_adapter.tcp_connected():
-                    keyboard_listener.stop()
-                    break
-
-        socket_close_thread = threading.Thread(target=socket_close_listener)
-        socket_close_thread.start()  # start socket close listener
-        keyboard_listener.join()  # Join the listener thread to the main thread to keep waiting for keys
-
+        result_msg = network_adapter.tcp_recover()
+        if result_msg is None:
+            keyboard_listener.stop()
+            return
+        keyboard_listener.stop()
+        print(result_msg.decode())
 
 def connecting_to_server(offer, addr):
     def get_port(offer):
@@ -79,4 +75,4 @@ def run(udp_listening_port, team_name):
         game_mode(network_adapter)
         print("\nServer disconnected, listening for offer requests...\n")
 
-run(2020, 'makaveli')
+run(13117, 'makaveli')

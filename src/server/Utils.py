@@ -29,21 +29,23 @@ def make_welcome_message():
 
 def game_over():
     score = Game.Game.get_instance().score
-    print("\nGame Over !")
+    result = "\nGame Over !\n"
     g1_score = g2_score = 0
     for s in score[1]:
         g1_score += score[1][s]
     for s in score[2]:
         g2_score += score[2][s]
 
-    print("Group 1 typed in", g1_score, "characters. Group 2 typed in", g2_score, "characters.")
+    result += "Group 1 typed in" + " " + str(g1_score) + " " + "characters. Group 2 typed in" + " " + str(g2_score) + " " + "characters.\n"
     if g1_score == g2_score:
-        print("TEKO !")
+        result += "TEKO !\n"
     else:
         winner = 1 if g1_score > g2_score else 2
-        print("Group", winner, "wins !")
-        print("Congratulations to the winners:\n==")
+        result += "Group" + " " + str(winner) + " " + "wins !\n"
+        result += "Congratulations to the winners:\n==\n"
         for player in score[winner]:
-            print(" ", player)
+            result += "  " + player
 
-    print("\n")
+    result += "\n"
+    print(result)
+    return result
