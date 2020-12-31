@@ -1,5 +1,5 @@
-import NetworkAdapter, Game, Utils
-import time, sys
+from src.server import NetworkAdapter, Game, Utils
+import time
 
 
 def waiting_for_clients(network_adapter):
@@ -22,9 +22,9 @@ def game_mode(network_adapter):
         Utils.game_over()
 
 
-def run(udp_dest_port, interface):
+def run(udp_dest_port):
     # initialize network adapter
-    network_adapter = NetworkAdapter.NetworkAdapter(udp_dest_port, interface = interface)
+    network_adapter = NetworkAdapter.NetworkAdapter(udp_dest_port)
 
     while True:
         # waiting for clients mode
@@ -36,9 +36,4 @@ def run(udp_dest_port, interface):
         # restart game instance
         Game.Game.get_instance().restart()
 
-
-
-udp_dest_port = int(sys.argv[1])
-interface = sys.argv[2]
-
-run(udp_dest_port, interface)
+run(2020)

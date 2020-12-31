@@ -1,7 +1,7 @@
 import socket
 import scapy.all as Scapy
 import threading
-import ConnectionHandler
+from src.server import ConnectionHandler
 
 
 def get_ip(interface):
@@ -9,7 +9,7 @@ def get_ip(interface):
 
 
 class NetworkAdapter:
-    def __init__(self, udp_dest_port, interface=Scapy.conf.iface):
+    def __init__(self, udp_dest_port, interface=Scapy.conf.iface, timeout=0.2):
         self.ip = get_ip(interface)
         # Setting up UDP socket
         self.udp_dest_port = udp_dest_port
@@ -20,7 +20,6 @@ class NetworkAdapter:
         self.tcp_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.tcp_socket.bind((self.ip, 0))
         self.tcp_running_port = self.tcp_socket.getsockname()[1]
-        self.tcp_socket.listen(1)
         self.tcp_running = True
         self.tcp_thread = threading.Thread(target=self.tcp_thread)
         self.tcp_thread.start()

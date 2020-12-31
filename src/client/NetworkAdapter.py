@@ -38,10 +38,9 @@ class NetworkAdapter:
         clear_thread = threading.Thread(target=_clear)
         clear_thread.start()
 
-    def make_tcp_connection(self, server_ip, port):
-        print(server_ip, port, " <<")
+    def make_tcp_connection(self, port, addr):
         self.tcp_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.tcp_socket.connect((server_ip, port))
+        self.tcp_socket.connect((addr, port))
 
     def send_tcp_message(self, message):
         self.tcp_socket.send(message.encode())
@@ -52,13 +51,9 @@ class NetworkAdapter:
         except Exception as e:
             return None
 
-    def tcp_connected(self, msg):
+    def tcp_connected(self):
         try:
-            d = self.send_tcp_message(msg)
+            self.tcp_socket.recv(1)
             return True
-        except BlockingIOError:
-            return True  
-        except ConnectionResetError as e:
-            return False
-        except Exception as e:
+        except:
             return False

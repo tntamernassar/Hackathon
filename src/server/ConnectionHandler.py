@@ -1,5 +1,5 @@
 import threading
-import Game
+from src.server import Game
 
 BUFFER_SIZE = 200
 
@@ -34,7 +34,6 @@ class ConnectionHandler:
     def kill(self):
         try:
             self.tcp_socket.close()
-        except Exception as e:
-            print(e)
+        except:
             pass
 

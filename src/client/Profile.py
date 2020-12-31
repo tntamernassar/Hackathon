@@ -27,8 +27,7 @@ class Profile:
 
     def connect_to_game(self, port, addr):
         try:
-            self.network_adapter.make_tcp_connection(addr, port)
+            self.network_adapter.make_tcp_connection(port, addr)
             return True
         except Exception as e:
-            print(e)
             return False

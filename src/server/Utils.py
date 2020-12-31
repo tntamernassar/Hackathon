@@ -1,4 +1,4 @@
-import Game
+from src.server import Game
 
 
 def make_offer_request(network_adapter):
