@@ -24,15 +24,20 @@ class NetworkAdapter:
         except:
             return None, None
 
-    def clear_udp(self):
+    # clears no more than {@param max_packets} that come on an interval of {@param interval}
+    def clear_udp(self, max_packets, interval):
         def _clear():
-            self.udp_socket.settimeout(1.5)
+            self.udp_socket.settimeout(interval)
             offer, addr = self.udp_recover()
+            packets_cleared = 0
             while True:
                 if offer is None and addr is None:
                     break
                 else:
                     offer, addr = self.udp_recover()
+                    packets_cleared += 1
+                    if packets_cleared == max_packets:
+                        break
             self.udp_socket.settimeout(None)
 
         clear_thread = threading.Thread(target=_clear)
@@ -49,6 +54,7 @@ class NetworkAdapter:
         try:
             return self.tcp_socket.recv(BUFFER_SIZE)
         except Exception as e:
+            print(e)
             return None
 
     def tcp_connected(self):

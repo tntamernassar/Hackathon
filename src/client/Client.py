@@ -46,7 +46,7 @@ def looking_for_server(network_adapter):
     while not is_offer(offer):
         offer, addr = network_adapter.udp_recover()
 
-    network_adapter.clear_udp()
+    network_adapter.clear_udp(10, 1.5)
     return offer, addr
 
 
